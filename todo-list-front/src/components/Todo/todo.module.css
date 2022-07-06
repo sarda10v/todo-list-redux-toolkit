@@ -1,0 +1,205 @@
+/* !! LOADER */
+.loaderPosition {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  --uib-size: 80px;
+  --uib-speed: 1.55s;
+  --uib-color: black;
+  --uib-line-weight: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--uib-line-weight);
+  width: var(--uib-size);
+  border-radius: calc(var(--uib-line-weight) / 2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--uib-color);
+  opacity: 0.1;
+}
+
+.loader::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--uib-line-weight) / 2);
+  animation: wobble var(--uib-speed) ease-in-out infinite;
+  transform: translateX(-90%);
+  background-color: var(--uib-color);
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(-90%);
+  }
+
+  50% {
+    transform: translateX(90%);
+  }
+}
+
+/* !! ERROR ANIMATION */
+.error,
+.empty {
+  width: 100%;
+  height: 100%;
+}
+
+.error img,
+.empty img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*!! TODOS */
+ul {
+  width: 90%;
+  margin: auto;
+}
+
+ul li {
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 250ms;
+}
+
+ul li:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.active {
+  background-color: rgb(241, 241, 241);
+}
+
+.activeText {
+  padding: 6px;
+  width: 100%;
+  font-family: cursive;
+  text-transform: uppercase;
+  word-break: break-all;
+  text-decoration: line-through;
+}
+
+.wrapperCheckBox,
+.wrapperDeleteBtn {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.wrapperCheckBox,
+.wrapperDeleteBtn {
+  width: 10%;
+}
+
+.wrapperInfoTodo {
+  width: 80%;
+}
+
+.wrapperText {
+  padding: 6px;
+  width: 100%;
+  font-family: cursive;
+  text-transform: uppercase;
+  word-break: break-all;
+}
+
+.wrapperData {
+  width: 100%;
+  text-transform: lowercase;
+  font-family: cursive;
+  font-size: 12px;
+  text-align: center;
+}
+
+.wrapperCheckBox input {
+  width: 30px;
+  height: 30px;
+}
+
+.wrapperDeleteBtn button {
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  transition: 200ms;
+}
+
+.wrapperDeleteBtn button:hover {
+  color: red;
+}
+
+/* !! CHECBOX */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: #e5e5e5;
+  border-radius: 50%;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: blue;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
